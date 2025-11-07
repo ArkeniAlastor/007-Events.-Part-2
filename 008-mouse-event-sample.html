@@ -13,7 +13,9 @@
             height: 100px;
             color: white;
             position: absolute;
+            
         }
+
         .rect2 {
             background-color: rgb(24, 0, 240);
             width: 100px;
@@ -52,15 +54,23 @@
         // div перемещается только если переменная move == true
         document.addEventListener("mousemove", function (e) {
             if (move) {
-                div.style.top = e.clientY - offsetY + "px";
-                div.style.left = e.clientX - offsetX + "px";
+                if (e.clientY - offsetY > 0) {
+                    div.style.top = e.clientY - offsetY + "px";
+                }
+                if (e.clientX - offsetX > 0) {
+                    div.style.left = e.clientX - offsetX + "px";
+                }
             }
         });
 
         document.addEventListener("mousemove", function (e) {
             if (move2) {
-                div2.style.top = e.clientY - offsetY + "px";
-                div2.style.left = e.clientX - offsetX + "px";
+                if (e.clientY - offsetY > 0) {
+                    div2.style.top = e.clientY - offsetY + "px";
+                }
+                if (e.clientX - offsetX > 0) {
+                    div2.style.left = e.clientX - offsetX + "px";
+                }
             }
         });
 
