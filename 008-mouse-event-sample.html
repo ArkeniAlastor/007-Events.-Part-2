@@ -13,7 +13,7 @@
             height: 100px;
             color: white;
             position: absolute;
-            
+            border-radius: 12px;
         }
 
         .rect2 {
@@ -22,13 +22,31 @@
             height: 100px;
             color: white;
             position: absolute;
+            border-radius: 12px;
         }
+        .bord{
+            border: solid red 8px;
+            width: auto;
+            height: 400px;
+        }
+        .bord2{
+            border: solid red 8px;
+            width: auto;
+            height: 400px;
+        }
+        
     </style>
 </head>
 
 <body>
-    <div id="testDiv" class="rect"></div>
-    <div id="testDiv2" class="rect2"></div>
+    <div class="bord">
+        <div id="testDiv" class="rect"></div>
+    </div>
+    <div class="bord2">
+        <div id="testDiv2" class="rect2"></div>
+    </div>
+
+
 
     <script>
         let div = document.querySelector("#testDiv");
