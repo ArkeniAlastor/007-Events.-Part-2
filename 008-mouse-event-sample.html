@@ -24,17 +24,18 @@
             position: absolute;
             border-radius: 12px;
         }
-        .bord{
+
+        .bord {
             border: solid red 8px;
             width: auto;
             height: 400px;
         }
-        .bord2{
+
+        .bord2 {
             border: solid red 8px;
             width: auto;
             height: 400px;
         }
-        
     </style>
 </head>
 
@@ -55,7 +56,6 @@
         let move2 = false;
         let offsetX, offsetY;
 
-        // при нажатии на div запоминаем отступ от курсора до левого верхнего угла div
         div.addEventListener("mousedown", function (e) {
             move = true;
             offsetX = e.offsetX;
@@ -67,32 +67,38 @@
             offsetY = e.offsetY;
         });
 
-        // отлеживаем движение мыши по поверхности документа и перемещаем div
-        // с учетом сохраненных отступов в момент нажатия левой клавиши мыши.
-        // div перемещается только если переменная move == true
-        document.addEventListener("mousemove", function (e) {
+        document.addEventListener("mousemove", e => {
             if (move) {
-                if (e.clientY - offsetY > 0) {
-                    div.style.top = e.clientY - offsetY + "px";
-                }
-                if (e.clientX - offsetX > 0) {
-                    div.style.left = e.clientX - offsetX + "px";
-                }
-            }
-        });
+                let bord = document.querySelector(".bord");
+                let rect = bord.getBoundingClientRect();
+                let x = e.clientX - rect.left - offsetX;
+                let y = e.clientY - rect.top - offsetY;
 
-        document.addEventListener("mousemove", function (e) {
+                if (x < 0) x = 0;
+                if (y < 0) y = 0;
+                if (x > rect.width - div.offsetWidth) x = rect.width - div.offsetWidth;
+                if (y > rect.height - div.offsetHeight) y = rect.height - div.offsetHeight;
+
+                div.style.left = x + "px";
+                div.style.top = y + "px";
+            }
+
             if (move2) {
-                if (e.clientY - offsetY > 0) {
-                    div2.style.top = e.clientY - offsetY + "px";
-                }
-                if (e.clientX - offsetX > 0) {
-                    div2.style.left = e.clientX - offsetX + "px";
-                }
+                let bord2 = document.querySelector(".bord2");
+                let rect2 = bord2.getBoundingClientRect();
+                let x2 = e.clientX - rect2.left - offsetX;
+                let y2 = e.clientY - rect2.top - offsetY;
+
+                if (x2 < 0) x2 = 0;
+                if (y2 < 0) y2 = 0;
+                if (x2 > rect2.width - div2.offsetWidth) x2 = rect2.width - div2.offsetWidth;
+                if (y2 > rect2.height - div2.offsetHeight) y2 = rect2.height - div2.offsetHeight;
+
+                div2.style.left = x2 + "px";
+                div2.style.top = y2 + "px";
             }
         });
 
-        // в момент, когда клавиша отпускается прекращаем перемещение div
         document.addEventListener("mouseup", function (e) {
             move = false;
             move2 = false;
