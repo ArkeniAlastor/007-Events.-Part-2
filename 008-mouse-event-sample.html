@@ -69,23 +69,39 @@
 
         document.addEventListener("mousemove", function (e) {
             if (move) {
-                if (e.clientY - offsetY > 0) {
-                    div.style.top = e.clientY - offsetY + "px";
-                }
-                if (e.clientX - offsetX > 0) {
-                    div.style.left = e.clientX - offsetX + "px";
-                }
+                const bord = div.parentElement.getBoundingClientRect();
+                const rect = div.getBoundingClientRect();
+                
+                let newTop = e.clientY - offsetY;
+                let newLeft = e.clientX - offsetX;
+        
+                if (newTop < bord.top) newTop = bord.top;
+                if (newTop + rect.height > bord.bottom) newTop = bord.bottom - rect.height;
+                
+                if (newLeft < bord.left) newLeft = bord.left;
+                if (newLeft + rect.width > bord.right) newLeft = bord.right - rect.width;
+                
+                div.style.top = newTop + "px";
+                div.style.left = newLeft + "px";
             }
         });
 
         document.addEventListener("mousemove", function (e) {
             if (move2) {
-                if (e.clientY - offsetY > 0) {
-                    div2.style.top = e.clientY - offsetY + "px";
-                }
-                if (e.clientX - offsetX > 0) {
-                    div2.style.left = e.clientX - offsetX + "px";
-                }
+                const bord = div2.parentElement.getBoundingClientRect();
+                const rect = div2.getBoundingClientRect();
+                
+                let newTop = e.clientY - offsetY;
+                let newLeft = e.clientX - offsetX;
+                
+                if (newTop < bord.top) newTop = bord.top;
+                if (newTop + rect.height > bord.bottom) newTop = bord.bottom - rect.height;
+                
+                if (newLeft < bord.left) newLeft = bord.left;
+                if (newLeft + rect.width > bord.right) newLeft = bord.right - rect.width;
+                
+                div2.style.top = newTop + "px";
+                div2.style.left = newLeft + "px";
             }
         });
 
