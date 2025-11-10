@@ -28,13 +28,13 @@
         .bord {
             border: solid red 8px;
             width: auto;
-            height: 400px;
+            height: 300px;
         }
 
         .bord2 {
             border: solid red 8px;
             width: auto;
-            height: 400px;
+            height: 300px;
         }
     </style>
 </head>
@@ -67,35 +67,25 @@
             offsetY = e.offsetY;
         });
 
-        document.addEventListener("mousemove", e => {
+        document.addEventListener("mousemove", function (e) {
             if (move) {
-                let bord = document.querySelector(".bord");
-                let rect = bord.getBoundingClientRect();
-                let x = e.clientX - rect.left - offsetX;
-                let y = e.clientY - rect.top - offsetY;
-
-                if (x < 0) x = 0;
-                if (y < 0) y = 0;
-                if (x > rect.width - div.offsetWidth) x = rect.width - div.offsetWidth;
-                if (y > rect.height - div.offsetHeight) y = rect.height - div.offsetHeight;
-
-                div.style.left = x + "px";
-                div.style.top = y + "px";
+                if (e.clientY - offsetY > 0) {
+                    div.style.top = e.clientY - offsetY + "px";
+                }
+                if (e.clientX - offsetX > 0) {
+                    div.style.left = e.clientX - offsetX + "px";
+                }
             }
+        });
 
+        document.addEventListener("mousemove", function (e) {
             if (move2) {
-                let bord2 = document.querySelector(".bord2");
-                let rect2 = bord2.getBoundingClientRect();
-                let x2 = e.clientX - rect2.left - offsetX;
-                let y2 = e.clientY - rect2.top - offsetY;
-
-                if (x2 < 0) x2 = 0;
-                if (y2 < 0) y2 = 0;
-                if (x2 > rect2.width - div2.offsetWidth) x2 = rect2.width - div2.offsetWidth;
-                if (y2 > rect2.height - div2.offsetHeight) y2 = rect2.height - div2.offsetHeight;
-
-                div2.style.left = x2 + "px";
-                div2.style.top = y2 + "px";
+                if (e.clientY - offsetY > 0) {
+                    div2.style.top = e.clientY - offsetY + "px";
+                }
+                if (e.clientX - offsetX > 0) {
+                    div2.style.left = e.clientX - offsetX + "px";
+                }
             }
         });
 
